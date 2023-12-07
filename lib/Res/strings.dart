@@ -1,5 +1,9 @@
+/// Contains all the strings used across the app.
+/// Avoid hard coding strings.
+/// All the strings must be added in this file.
+
 class AppStrings {
-  static const appName = "Riverpod app template";
+  static const appName = "To Do App";
 }
 
 class FailureMessage {
@@ -29,6 +33,7 @@ class LogLabel {
   static const httpGet = "HTTP/GET";
   static const httpPost = "HTTP/POST";
   static const httpPut = "HTTP/PUT";
+  static const httpPatch = "HTTP/PATCH";
   static const httpDelete = "HTTP/DELETE";
   static const sharedPrefs = "SHARED_PREFERENCES";
 }

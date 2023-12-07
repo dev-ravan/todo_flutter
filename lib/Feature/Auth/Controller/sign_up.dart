@@ -1,7 +1,5 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, unused_local_variable
 
-import 'package:todo_app/Feature/Auth/Repo/sign_up.dart';
-import 'package:todo_app/Models/register_user.dart';
 import 'package:todo_app/Utils/exports.dart';
 
 class SignUpProvider extends ChangeNotifier {
@@ -10,7 +8,6 @@ class SignUpProvider extends ChangeNotifier {
 
   // Loading
   bool isLoading = false;
-  RegisterUser? _registerUserModel;
 
   // Text Editing Controllers
   final emailController = TextEditingController();
@@ -44,17 +41,17 @@ class SignUpProvider extends ChangeNotifier {
   // [Validations]
 
   // Email Validation
-  String? emailValidation(String? val) => val == null ? email.errorMsg : null;
+  String? emailValidation(String? val) => val!.isEmpty ? email.errorMsg : null;
 
   // New Password Validation
-  String? newPasswordValidation(String? val) => val == null
+  String? newPasswordValidation(String? val) => val!.isEmpty
       ? newPassword.errorMsg
       : val.length < 6
           ? "Password should at least 6 digits"
           : null;
 
   // Repeat Password Validation
-  String? repeatPasswordValidation(String? val) => val == null
+  String? repeatPasswordValidation(String? val) => val!.isEmpty
       ? newPassword.errorMsg
       : val.length < 6
           ? "Password should at least 6 digits"
@@ -66,26 +63,9 @@ class SignUpProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Set Register Model
-
-  setRegisterModel(RegisterUser registerUserModel) =>
-      _registerUserModel = registerUserModel;
-
-  // Register User
-
-  registerUser() async {
-    setLoading(true);
-    var response = await RegisterRepo.registerUser(
-            email: emailController.text, password: newPasswordController.text)
-        .then((value) => {print(value)});
-    print(response);
-    setLoading(false);
-  }
-
   // Submit the login form
   void submitForm() {
     if (formKey.currentState!.validate()) {
-      registerUser();
     } else {
       print("Sign up failed...");
     }

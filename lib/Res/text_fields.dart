@@ -1,8 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/Res/colors.dart';
+import 'package:todo_app/Res/theme.dart';
+
+final myTextFields = MyTextFields();
 
 class MyTextFields {
-  Widget authField(
+  TextFormField authField(
+      {required String hintText,
+      required TextEditingController controller,
+      String? Function(String?)? validator,
+      bool? obscure,
+      required IconData icon}) {
+    return TextFormField(
+      controller: controller,
+      validator: validator,
+      obscureText: obscure ?? false,
+      cursorColor: Palette.black,
+      decoration: InputDecoration(
+        focusColor: Palette.white,
+        prefixIcon: Icon(icon),
+        hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Palette.grey)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Palette.black)),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(color: Palette.red)),
+      ),
+    );
+  }
+
+// Address Field
+  TextFormField addressField(
       {required String hintText,
       required TextEditingController controller,
       required String? Function(String?) validator,
@@ -11,6 +45,7 @@ class MyTextFields {
     return TextFormField(
       controller: controller,
       validator: validator,
+      maxLines: 3,
       obscureText: obscure ?? false,
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
@@ -32,7 +67,7 @@ class MyTextFields {
   }
 
 // Message text field
-  Widget sendMessageField({
+  TextFormField sendMessageField({
     required TextEditingController controller,
     required Function onTap,
   }) {

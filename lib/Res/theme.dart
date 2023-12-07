@@ -10,3 +10,13 @@ class Palette {
   static Color white = Colors.white;
   static Color red = const Color(0XFFc91b0c);
 }
+
+ThemeData lightMode = ThemeData(
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: Colors.blue.shade50,
+  colorScheme: const ColorScheme.light(
+    background: Color(0xff27374d),
+    primary: Color(0xff526D82),
+    secondary: Color(0xffdde6ed),
+  ),
+);

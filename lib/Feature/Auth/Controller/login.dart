@@ -1,8 +1,11 @@
+import 'package:todo_app/Feature/Auth/View/profile.dart';
 import 'package:todo_app/Utils/exports.dart';
 
 class LoginProvider extends ChangeNotifier {
+  // Navigation
+  final GoRouter _router;
+  LoginProvider(this._router);
   // Global form key
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   // Text Editing Controllers
@@ -32,15 +35,20 @@ class LoginProvider extends ChangeNotifier {
       FormItems(hintText: "Password", errorMsg: "Please enter password");
 
   // Validations
+  String? emailValidation(String? val) => val!.isEmpty ? email.errorMsg : null;
 
-  void emailValidation(String? val) => val != null ? email.errorMsg : null;
-  void passwordValidation(String? val) =>
-      val != null ? password.errorMsg : null;
+  // New Password Validation
+  String? passwordValidation(String? val) => val!.isEmpty
+      ? password.errorMsg
+      : val.length <= 6
+          ? "Password should at least 6 digits"
+          : null;
 
   // Submit the login form
 
   void submitForm() {
     if (formKey.currentState!.validate()) {
+      _router.goRoute(const Profile());
       print("Login successfully...");
     } else {
       print("Login failed...");

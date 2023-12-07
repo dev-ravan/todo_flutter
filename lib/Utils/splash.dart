@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../Feature/Auth/View/login.dart';
-import '../../Res/colors.dart';
-import '../../Res/texts.dart';
+import '../Feature/Auth/View/login.dart';
+import '../Res/theme.dart';
+import '../Res/texts.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

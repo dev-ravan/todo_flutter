@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'Common/View/splash.dart';
-import 'Feature/Auth/Controller/login.dart';
+import 'Utils/splash.dart';
 import 'Feature/Auth/Controller/sign_up.dart';
+import 'Utils/exports.dart';
 
-void main() {
+void main() async {
+  // ? this helps to http licenses and issues
+  WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -18,11 +18,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginProvider>(
-            create: (context) => LoginProvider()),
+            create: (_) => LoginProvider(GoRouter.instance)),
         ChangeNotifierProvider<SignUpProvider>(
             create: (context) => SignUpProvider()),
+        ChangeNotifierProvider<ProfileProvider>(
+            create: (_) => ProfileProvider(GoRouter.instance))
       ],
       child: MaterialApp(
+        navigatorKey: GoRouter.instance.navigationKey,
         title: 'Todo Dude',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -32,5 +35,14 @@ class MyApp extends StatelessWidget {
         home: const Splash(),
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

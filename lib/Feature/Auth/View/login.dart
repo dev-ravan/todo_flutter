@@ -36,7 +36,7 @@ class Login extends StatelessWidget {
                 child: Column(
                   children: [
                     MyTextFields().authField(
-                        validator: (value) => provider.email.errorMsg,
+                        validator: (value) => provider.emailValidation(value),
                         icon: Icons.mail,
                         controller: provider.emailController,
                         hintText: provider.email.hintText),
@@ -44,7 +44,8 @@ class Login extends StatelessWidget {
 
                     // Password Field
                     MyTextFields().authField(
-                        validator: (value) => provider.password.errorMsg,
+                        validator: (value) =>
+                            provider.passwordValidation(value),
                         obscure: true,
                         icon: Icons.key,
                         controller: provider.passwordController,

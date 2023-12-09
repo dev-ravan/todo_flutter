@@ -1,22 +1,22 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import '../Res/theme.dart';
-import '../Res/texts.dart';
+import 'package:todo_app/Utils/exports.dart';
 
 PreferredSizeWidget MyAppBar(
-    {required BuildContext context, required Function onTap}) {
+    {required BuildContext context,
+    required Function onTap,
+    required String userName}) {
   return AppBar(
-    title: MyTexts().WhiteLogoText(size: 40),
-    centerTitle: true,
-    backgroundColor: Palette.black,
+    title: MyTexts().WelcomeText(size: 25, userName: userName),
+    backgroundColor: Palette.white,
+    automaticallyImplyLeading: false,
     actions: [
-      IconButton(
-          onPressed: onTap as void Function(),
-          icon: Icon(
-            Icons.logout,
-            color: Palette.white,
-          )),
+      Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: InkWell(
+            onTap: onTap as void Function(),
+            child: SvgPicture.asset(menuIcon, width: 30)),
+      )
     ],
   );
 }

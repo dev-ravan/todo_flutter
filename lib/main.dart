@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:todo_app/firebase_options.dart';
 import 'Utils/splash.dart';
 import 'Feature/Auth/Controller/sign_up.dart';
 import 'Utils/exports.dart';
@@ -5,6 +7,11 @@ import 'Utils/exports.dart';
 void main() async {
   // ? this helps to http licenses and issues
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ? Firebase Initialize
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
@@ -22,7 +29,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SignUpProvider>(
             create: (context) => SignUpProvider()),
         ChangeNotifierProvider<ProfileProvider>(
-            create: (_) => ProfileProvider(GoRouter.instance))
+            create: (_) => ProfileProvider(GoRouter.instance)),
+        ChangeNotifierProvider<HomeProvider>(
+            create: (_) => HomeProvider(GoRouter.instance)),
+        ChangeNotifierProvider<DrawerProvider>(
+            create: (_) => DrawerProvider(GoRouter.instance))
       ],
       child: MaterialApp(
         navigatorKey: GoRouter.instance.navigationKey,

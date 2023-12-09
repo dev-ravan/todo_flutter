@@ -25,6 +25,25 @@ class MyTexts {
     );
   }
 
+  Widget WelcomeText({required double size, required String userName}) {
+    return RichText(
+      text: TextSpan(children: [
+        TextSpan(
+            text: "Hi, ",
+            style: GoogleFonts.montserrat(
+                color: Palette.greyText,
+                fontSize: size,
+                fontWeight: FontWeight.w400)),
+        TextSpan(
+            text: "$userName 😉",
+            style: GoogleFonts.montserrat(
+                color: Palette.black,
+                fontSize: size,
+                fontWeight: FontWeight.w500)),
+      ]),
+    );
+  }
+
   Widget WhiteLogoText({required double size}) {
     return RichText(
       text: TextSpan(children: [
@@ -54,6 +73,14 @@ class MyTexts {
     return Text(text,
         style: GoogleFonts.dmSans(
             color: Palette.black,
+            fontSize: size,
+            fontWeight: FontWeight.normal));
+  }
+
+  Widget DMSansNormalGreyText({required String text, required double size}) {
+    return Text(text,
+        style: GoogleFonts.dmSans(
+            color: Palette.greyText,
             fontSize: size,
             fontWeight: FontWeight.normal));
   }

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import '../Feature/Auth/View/login.dart';
-import '../Res/theme.dart';
-import '../Res/texts.dart';
+import 'package:todo_app/Utils/exports.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

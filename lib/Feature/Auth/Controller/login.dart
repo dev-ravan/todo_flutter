@@ -1,4 +1,3 @@
-import 'package:todo_app/Feature/Auth/View/profile.dart';
 import 'package:todo_app/Utils/exports.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -9,7 +8,6 @@ class LoginProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   // Text Editing Controllers
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -48,7 +46,7 @@ class LoginProvider extends ChangeNotifier {
 
   void submitForm() {
     if (formKey.currentState!.validate()) {
-      _router.goRoute(const Profile());
+      _router.goRoute(const Home());
       print("Login successfully...");
     } else {
       print("Login failed...");

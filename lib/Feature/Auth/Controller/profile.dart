@@ -118,7 +118,7 @@ class ProfileProvider extends ChangeNotifier {
     String linkedInUrl = linkedInController.text;
 
     // Create multipart request
-    var uri = Uri.parse("http://localhost:2323/bio-data");
+    var uri = Uri.parse("http://localhost:3000/bio-data");
     var request = http.MultipartRequest("POST", uri);
 
     // Attach file to request

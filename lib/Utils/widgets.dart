@@ -3,6 +3,22 @@ import 'package:todo_app/Utils/exports.dart';
 final myWidgets = MyWidgets();
 
 class MyWidgets {
+  Widget miniAvatar({required Function onTap, required image}) => Padding(
+        padding: const EdgeInsets.all(5),
+        child: InkWell(
+          onTap: onTap as void Function(),
+          child: CircleAvatar(
+            radius: 25,
+            backgroundColor: Palette.black,
+            child: CircleAvatar(
+              radius: 24,
+              backgroundColor: Colors.grey[200],
+              backgroundImage: AssetImage(image),
+            ),
+          ),
+        ),
+      );
+
   Widget profileAvatar({required Function onTap, required image}) => Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -58,4 +74,12 @@ class MyWidgets {
           ],
         ),
       );
+
+  Widget drawerListTile({required String title, required IconData icon}) =>
+      ListTile(
+          leading: Icon(
+            icon,
+            color: Palette.black,
+          ),
+          title: MyTexts().DMSansNormalBlackText(text: title, size: 20));
 }
